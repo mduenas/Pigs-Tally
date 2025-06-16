@@ -1,0 +1,69 @@
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+\!gradle-wrapper.jar
+\!gradle-wrapper.properties
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+
+# Visual Studio Code
+.vscode/
+
+# macOS
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+
+# Android
+*.apk
+*.aab
+*.ap_
+*.dex
+captures/
+proguard/
+
+# iOS
+DerivedData/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+build/
+
+# Kotlin Multiplatform
+.kotlin/
+kotlin-js-store/
+
+# Compose Multiplatform
+.compose/
+
+# JetBrains
+out/
+
+# Node.js (if using for web)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+**/node_modules/
+EOF < /dev/null
