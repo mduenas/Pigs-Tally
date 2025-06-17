@@ -362,7 +362,11 @@ private fun ScoringSection(
                         containerColor = MaterialTheme.colorScheme.tertiary
                     )
                 ) {
-                    Text("Undo")
+                    Text(
+                        text = "Undo",
+                        fontSize = 12.5.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,)
                 }
                 
                 Button(
@@ -375,7 +379,11 @@ private fun ScoringSection(
                         containerColor = PassThePigsColors.PositiveScore
                     )
                 ) {
-                    Text("Bank")
+                    Text(
+                        text = "Bank",
+                        fontSize = 12.5.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,)
                 }
                 
                 Button(
@@ -388,7 +396,11 @@ private fun ScoringSection(
                         containerColor = PassThePigsColors.Primary
                     )
                 ) {
-                    Text("Roll Again")
+                    Text(
+                        text = "Roll Again",
+                        fontSize = 12.5.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,)
                 }
             }
         } else {
