@@ -55,7 +55,7 @@ fun ScoringButton(
             ) {
                 Text(
                     text = position.displayName,
-                    fontSize = 14.sp,
+                    fontSize = 12.5.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
                     maxLines = 2
