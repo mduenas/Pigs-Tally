@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,6 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.markduenas.pigstally2.model.GamePreferences
+import com.markduenas.pigstally2.ui.components.RulesDialog
 import com.markduenas.pigstally2.ui.theme.PassThePigsColors
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -25,6 +27,7 @@ fun SettingsScreen(
 ) {
     var defaultPlayerCount by remember(preferences) { mutableStateOf(preferences.defaultPlayerCount) }
     var winningScore by remember(preferences) { mutableStateOf(preferences.winningScore) }
+    var showRulesDialog by remember { mutableStateOf(false) }
     
     Column(
         modifier = modifier
@@ -219,6 +222,56 @@ fun SettingsScreen(
             }
         }
         
+        // Game Rules card
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = PassThePigsColors.Primary.copy(alpha = 0.1f)
+            ),
+            shape = RoundedCornerShape(12.dp)
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text(
+                    text = "Game Rules",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = PassThePigsColors.Primary
+                )
+                
+                Text(
+                    text = "Need a refresher on how to play Pass the Pigs?",
+                    fontSize = 14.sp,
+                    color = PassThePigsColors.OnBackground,
+                    textAlign = TextAlign.Center
+                )
+                
+                Button(
+                    onClick = { showRulesDialog = true },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = PassThePigsColors.Primary
+                    ),
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Info,
+                        contentDescription = "View rules",
+                        modifier = Modifier.size(16.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "View Complete Rules",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
+            }
+        }
+        
         // Info card
         Card(
             modifier = Modifier.fillMaxWidth(),
@@ -249,5 +302,12 @@ fun SettingsScreen(
         }
         
         Spacer(modifier = Modifier.weight(1f))
+    }
+    
+    // Rules Dialog
+    if (showRulesDialog) {
+        RulesDialog(
+            onDismiss = { showRulesDialog = false }
+        )
     }
 }

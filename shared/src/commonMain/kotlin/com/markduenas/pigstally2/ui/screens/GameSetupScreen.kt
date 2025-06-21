@@ -1,11 +1,13 @@
 package com.markduenas.pigstally2.ui.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -17,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import com.markduenas.pigstally2.game.GameViewModel
 import com.markduenas.pigstally2.model.GameState
 import com.markduenas.pigstally2.ui.components.PlayerManagementCard
+import com.markduenas.pigstally2.ui.components.RulesDialog
 import com.markduenas.pigstally2.ui.theme.PassThePigsColors
 
 @Composable
@@ -129,6 +132,8 @@ private fun SetupHeader() {
 
 @Composable
 private fun GameInfoCard(playersCount: Int) {
+    var showRulesDialog by remember { mutableStateOf(false) }
+    
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -157,6 +162,34 @@ private fun GameInfoCard(playersCount: Int) {
                 textAlign = TextAlign.Center
             )
             
+            Spacer(modifier = Modifier.height(12.dp))
+            
+            // View Complete Rules button
+            OutlinedButton(
+                onClick = { showRulesDialog = true },
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = PassThePigsColors.Primary
+                ),
+                border = BorderStroke(
+                    width = 1.dp,
+                    color = PassThePigsColors.Primary
+                ),
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Info,
+                    contentDescription = "View complete rules",
+                    modifier = Modifier.size(16.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = "View Complete Rules",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium
+                )
+            }
+            
             Spacer(modifier = Modifier.height(8.dp))
             
             Text(
@@ -166,5 +199,12 @@ private fun GameInfoCard(playersCount: Int) {
                 color = PassThePigsColors.Primary
             )
         }
+    }
+    
+    // Rules Dialog
+    if (showRulesDialog) {
+        RulesDialog(
+            onDismiss = { showRulesDialog = false }
+        )
     }
 }
