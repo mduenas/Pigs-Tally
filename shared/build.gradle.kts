@@ -61,7 +61,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.markduenas.pigstally.shared"
+    namespace = "com.markduenas.pigstally2.shared"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
