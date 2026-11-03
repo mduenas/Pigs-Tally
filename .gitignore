@@ -66,4 +66,9 @@ yarn-error.log*
 
 # Dependency directories
 **/node_modules/
-EOF < /dev/null
+
+# Signing keys (never commit)
+keystore/
+*.jks
+*.keystore
+keystore.properties
