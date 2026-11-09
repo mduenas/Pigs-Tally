@@ -1,7 +1,9 @@
 package com.markduenas.pigstally2.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
@@ -14,6 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.markduenas.pigstally2.model.GamePreferences
+import com.markduenas.pigstally2.platform.rememberAppVersion
 import com.markduenas.pigstally2.ui.components.RulesDialog
 import com.markduenas.pigstally2.ui.theme.PassThePigsColors
 
@@ -28,10 +31,16 @@ fun SettingsScreen(
     var defaultPlayerCount by remember(preferences) { mutableStateOf(preferences.defaultPlayerCount) }
     var winningScore by remember(preferences) { mutableStateOf(preferences.winningScore) }
     var showRulesDialog by remember { mutableStateOf(false) }
-    
+    val appVersion = rememberAppVersion()
+
+    // The whole page scrolls so the rules button, info card, and version label
+    // stay reachable on short screens. safeDrawing covers any status, navigation,
+    // or cutout inset the parent Scaffold has not already consumed.
     Column(
         modifier = modifier
             .fillMaxSize()
+            .windowInsetsPadding(WindowInsets.safeDrawing)
+            .verticalScroll(rememberScrollState())
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
@@ -301,7 +310,13 @@ fun SettingsScreen(
             }
         }
         
-        Spacer(modifier = Modifier.weight(1f))
+        Text(
+            text = appVersion.label,
+            modifier = Modifier.fillMaxWidth(),
+            fontSize = 12.sp,
+            color = PassThePigsColors.OnBackground.copy(alpha = 0.6f),
+            textAlign = TextAlign.Center
+        )
     }
     
     // Rules Dialog
