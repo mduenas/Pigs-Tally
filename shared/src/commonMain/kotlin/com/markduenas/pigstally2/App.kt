@@ -1,5 +1,6 @@
 package com.markduenas.pigstally2
 
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -106,7 +107,9 @@ fun App() {
                         onNavigateBack = { 
                             currentScreen = if (gameState.gameStarted) "game" else "setup"
                         },
-                        modifier = Modifier.padding(paddingValues)
+                        modifier = Modifier
+                            .padding(paddingValues)
+                            .consumeWindowInsets(paddingValues)
                     )
                 }
             }
